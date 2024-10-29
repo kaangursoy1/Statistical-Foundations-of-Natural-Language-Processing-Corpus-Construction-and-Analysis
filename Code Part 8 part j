@@ -15,10 +15,6 @@ with open('stop_words_english.txt', 'r', encoding='latin-1') as file:
     stopword_list = stopword_list.translate(str.maketrans('', '', string.punctuation)).lower()
     stopword_list = re.sub(r"([^\s\w]|_)+", " ", stopword_list).split()
 
-Kaan Gursoy
-21704120
-EEE 486/586
-Assignment 1
 
 # List of text files to process
 text_files = [
