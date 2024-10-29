@@ -22,10 +22,7 @@ text_files = [
     'biology_3 Darwin and Modern Science by A. C. Seward.txt'
 ]
 
-Kaan Gursoy
-21704120
-EEE 486/586
-Assignment 1
+
 
 filtered_texts = []
 
