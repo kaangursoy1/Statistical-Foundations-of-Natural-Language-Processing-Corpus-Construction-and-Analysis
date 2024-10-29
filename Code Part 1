@@ -1,0 +1,1024 @@
+import glob
+import numpy as np
+import pandas as pd
+import math
+import seaborn as sns
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+import string
+import re
+
+# Stop word list
+with open('stop_words_english.txt', 'r', encoding='latin-1') as file:
+    stopword_list = file.read()
+    stopword_list = stopword_list.translate(str.maketrans('', '', string.punctuation)).lower()
+    stopword_list = re.sub(r"([^\s\w]|_)+", " ", stopword_list).split()
+
+# Biology
+# 1
+with open('biology_1 On the Origin of Species by Means of Natural Selection by Charles Darwin.txt', 'r') as file:
+    text1 = file.read()
+    text1 = text1.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_biology1 = re.sub(r"([^\s\w]|_)+", " ", text1).split()
+tokenized_biology1.pop(0)
+
+# Filtered version
+filtered_biology1 = [word for word in tokenized_biology1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_biology1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_biology1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 2
+with open('biology_2.txt', 'r', encoding='latin-1') as file:
+    text2 = file.read()
+    text2 = text2.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_biology2 = re.sub(r"([^\s\w]|_)+", " ", text2).split()
+tokenized_biology2.pop(0)
+
+# Filtered version
+filtered_biology2 = [word for word in tokenized_biology2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_biology2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_biology2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 3
+with open('biology_3 Darwin and Modern Science by A. C. Seward.txt', 'r') as file:
+    text3 = file.read()
+    text3 = text3.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_biology3 = re.sub(r"([^\s\w]|_)+", " ", text3).split()
+tokenized_biology3.pop(0)
+
+# Filtered version
+filtered_biology3 = [word for word in tokenized_biology3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_biology3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_biology3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_biology3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Psychology
+# 4
+with open('psycology_1 Ten Thousand Dreams Interpreted; Or, Whats in a Dream by Gustavus Hindman Miller.txt', 'r') as file:
+    text4 = file.read()
+    text4 = text4.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_psycology1 = re.sub(r"([^\s\w]|_)+", " ", text4).split()
+tokenized_psycology1.pop(0)
+
+# Filtered version
+filtered_psycology1 = [word for word in tokenized_psycology1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_psycology1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_psycology1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 5
+with open('psycology_2 Memoirs of Extraordinary Popular Delusions and the Madness of Crowds by Mackay.txt', 'r') as file:
+    text5 = file.read()
+    text5 = text5.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_psycology2 = re.sub(r"([^\s\w]|_)+", " ", text5).split()
+tokenized_psycology2.pop(0)
+
+# Filtered version
+filtered_psycology2 = [word for word in tokenized_psycology2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_psycology2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_psycology2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+#6
+with open('psycology_3 Criminal Psychology A Manual for Judges, Practitioners, and Students by Hans Gross.txt', 'r', encoding='latin-1') as file:
+    text6 = file.read()
+    text6 = text6.translate(str.maketrans('', '', string.punctuation)).lower()
+    text6 = text6.replace('â', '')
+
+tokenized_psycology3 = re.sub(r"([^\s\w]|_)+", " ", text6).split()
+tokenized_psycology3.pop(0)
+
+# Filtered version
+filtered_psycology3 = [word for word in tokenized_psycology3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_psycology3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_psycology3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_psycology3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Philosophy
+# 7
+with open('Philosophy_1 The republic by plato.txt', 'r', encoding='latin-1') as file:
+    text7 = file.read()
+    text7 = text7.translate(str.maketrans('', '', string.punctuation)).lower()
+    text7 = text7.replace('â', '')
+
+tokenized_philosophy1 = re.sub(r"([^\s\w]|_)+", " ", text7).split()
+tokenized_philosophy1.pop(0)
+
+# Filtered version
+filtered_philosophy1 = [word for word in tokenized_philosophy1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_philosophy1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_philosophy1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 8
+with open('Philosophy_2 A Treatise of Human Nature by David Hume.txt', 'r') as file:
+    text8 = file.read()
+    text8 = text8.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_philosophy2 = re.sub(r"([^\s\w]|_)+", " ", text8).split()
+tokenized_philosophy2.pop(0)
+
+# Filtered version
+filtered_philosophy2 = [word for word in tokenized_philosophy2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_philosophy2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_philosophy2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 9
+with open('Philosophy_3 Logic Deductive and Inductive by Carveth Read.txt', 'r', encoding='latin-1') as file:
+    text9 = file.read()
+    text9 = text9.translate(str.maketrans('', '', string.punctuation)).lower()
+    text9 = text9.replace('â', '')
+
+tokenized_philosophy3 = re.sub(r"([^\s\w]|_)+", " ", text9).split()
+tokenized_philosophy3.pop(0)
+
+# Filtered version
+filtered_philosophy3 = [word for word in tokenized_philosophy3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_philosophy3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_philosophy3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_philosophy3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Herman Melville
+# 10
+with open('Herman Melville Moby Dick; Or, The Whale.txt', 'r') as file:
+    text10 = file.read()
+    text10 = text10.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_melville1 = re.sub(r"([^\s\w]|_)+", " ", text10).split()
+tokenized_melville1.pop(0)
+
+# Filtered version
+filtered_melville1 = [word for word in tokenized_melville1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_melville1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_melville1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 11
+with open('Herman Melville Pierre; or The Ambiguities.txt', 'r') as file:
+    text11 = file.read()
+    text11 = text11.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_melville2 = re.sub(r"([^\s\w]|_)+", " ", text11).split()
+tokenized_melville2.pop(0)
+
+# Filtered version
+filtered_melville2 = [word for word in tokenized_melville2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_melville2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_melville2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+# 12
+with open('Herman Melville White Jacket; Or, The World on a Man-of-War.txt', 'r', encoding='latin-1') as file:
+    text12 = file.read()
+    text12 = text12.translate(str.maketrans('', '', string.punctuation)).lower()
+    text12 = text12.replace('â', '')
+
+tokenized_melville3 = re.sub(r"([^\s\w]|_)+", " ", text12).split()
+tokenized_melville3.pop(0)
+
+# Filtered version
+filtered_melville3 = [word for word in tokenized_melville3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_melville3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_melville3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_melville3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# George Eliot
+
+# 13
+with open('george eliot Daniel Deronda.txt', 'r', encoding='latin-1') as file:
+    text13 = file.read()
+    text13 = text13.translate(str.maketrans('', '', string.punctuation)).lower()
+    text13 = text13.replace('â', '')
+
+tokenized_george1 = re.sub(r"([^\s\w]|_)+", " ", text13).split()
+tokenized_george1.pop(0)
+
+# Filtered version
+filtered_george1 = [word for word in tokenized_george1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_george1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_george1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 14
+with open('george eliot Middlemarch.txt', 'r', encoding='latin-1') as file:
+    text14 = file.read()
+    text14 = text14.translate(str.maketrans('', '', string.punctuation)).lower()
+    text14 = text14.replace('â', '')
+
+tokenized_george2 = re.sub(r"([^\s\w]|_)+", " ", text14).split()
+tokenized_george2.pop(0)
+
+# Filtered version
+filtered_george2 = [word for word in tokenized_george2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_george2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_george2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 15
+with open('george eliot Romola.txt', 'r', encoding='latin-1') as file:
+    text15 = file.read()
+    text15 = text15.translate(str.maketrans('', '', string.punctuation)).lower()
+    text15 = text15.replace('â', '')
+
+tokenized_george3 = re.sub(r"([^\s\w]|_)+", " ", text15).split()
+tokenized_george3.pop(0)
+
+# Filtered version
+filtered_george3 = [word for word in tokenized_george3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_george3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_george3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_george3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+ # Charles Dickens
+
+# 16
+with open('Charles Dickens 1.txt', 'r') as file:
+    text16 = file.read()
+    text16 = text16.translate(str.maketrans('', '', string.punctuation)).lower()
+
+tokenized_dick1 = re.sub(r"([^\s\w]|_)+", " ", text16).split()
+tokenized_dick1.pop(0)
+
+# Filtered version
+filtered_dick1 = [word for word in tokenized_dick1 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_dick1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick1.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_dick1:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick1_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 17
+with open('Charles Dickens 2.txt', 'r', encoding='latin-1') as file:
+    text17 = file.read()
+    text17 = text17.translate(str.maketrans('', '', string.punctuation)).lower()
+    text17 = text17.replace('â', '')
+
+tokenized_dick2 = re.sub(r"([^\s\w]|_)+", " ", text17).split()
+tokenized_dick2.pop(0)
+
+# Filtered version
+filtered_dick2 = [word for word in tokenized_dick2 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_dick2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick2.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_dick2:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick2_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# 18
+with open('Charles Dickens 3.txt', 'r', encoding='latin-1') as file:
+    text18 = file.read()
+    text18 = text18.translate(str.maketrans('', '', string.punctuation)).lower()
+    text18 = text18.replace('â', '')
+
+tokenized_dick3 = re.sub(r"([^\s\w]|_)+", " ", text18).split()
+tokenized_dick3.pop(0)
+
+# Filtered version
+filtered_dick3 = [word for word in tokenized_dick3 if word not in stopword_list]
+
+# Vocabulary list for tokenized version
+word_freq = {}
+for word in tokenized_dick3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick3.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+# Vocabulary list for filtered version
+word_freq = {}
+for word in filtered_dick3:
+    if word not in word_freq:
+        word_freq[word] = 1
+    else:
+        word_freq[word] += 1
+
+sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+
+with open('vocabulary_dick3_filtered.txt', 'w') as file:
+    for word, freq in sorted_word_freq:
+        file.write(f"{word}: {freq}\n")
+
+
+from collections import Counter
+
+corpus_melville = filtered_melville1 + filtered_melville2 + filtered_melville3
+word_freq_melville = Counter(corpus_melville)
+sorted_words_melville = sorted(word_freq_melville, key=word_freq_melville.get, reverse=True)
+
+rank_melville = list(range(1, len(sorted_words_melville)+1))
+freq_melville = [word_freq_melville[word] for word in sorted_words_melville]
+plt.plot(rank_melville, freq_melville, label="Herman Melville")
+
+plt.xlabel("Rank")
+plt.ylabel("Frequency")
+plt.title("Zipf's Law Curve for Author Corpora")
+plt.xscale("linear")
+plt.yscale("linear")
+plt.legend()
+plt.show()
+
+corpus_george = filtered_george1 + filtered_george2 + filtered_george3
+word_freq_george = Counter(corpus_george)
+sorted_words_george = sorted(word_freq_george, key=word_freq_george.get, reverse=True)
+
+rank_george = list(range(1, len(sorted_words_george)+1))
+freq_george = [word_freq_george[word] for word in sorted_words_george]
+plt.plot(rank_george, freq_george, label="George Eliot")
+
+plt.xlabel("Rank")
+plt.ylabel("Frequency")
+plt.title("Zipf's Law Curve for Author Corpora")
+plt.xscale("linear")
+plt.yscale("linear")
+plt.legend()
+plt.show()
+
+corpus_dick = filtered_dick1 + filtered_dick2 + filtered_dick3
+word_freq_dick = Counter(corpus_dick)
+sorted_words_dick = sorted(word_freq_dick, key=word_freq_dick.get, reverse=True)
+
+rank_dick = list(range(1, len(sorted_words_dick)+1))
+freq_dick = [word_freq_dick[word] for word in sorted_words_dick]
+plt.plot(rank_dick, freq_dick, label="Charles Dickens")
+
+plt.xlabel("Rank")
+plt.ylabel("Frequency")
+plt.title("Zipf's Law Curve for Author Corpora")
+plt.xscale("linear")
+plt.yscale("linear")
+plt.legend()
+plt.show()
+
+with open('vocabulary_melville1_filtered.txt', 'r') as f:
+    vocab1 = [line.split(': ') for line in f.read().splitlines()]
+    vocab1 = [(w, int(f)) for w, f in vocab1]
+
+with open('vocabulary_melville2_filtered.txt', 'r') as f:
+    vocab2 = [line.split(': ') for line in f.read().splitlines()]
+    vocab2 = [(w, int(f)) for w, f in vocab2]
+
+with open('vocabulary_melville3_filtered.txt', 'r') as f:
+    vocab3 = [line.split(': ') for line in f.read().splitlines()]
+    vocab3 = [(w, int(f)) for w, f in vocab3]
+
+freq1 = [f for w, f in vocab1]
+freq2 = [f for w, f in vocab2]
+freq3 = [f for w, f in vocab3]
+
+rank1 = range(1, len(freq1)+1)
+rank2 = range(1, len(freq2)+1)
+rank3 = range(1, len(freq3)+1)
+
+plt.loglog(rank1, freq1, label='Book 1')
+plt.loglog(rank2, freq2, label='Book 2')
+plt.loglog(rank3, freq3, label='Book 3')
+
+plt.xlabel('Word Rank')
+plt.ylabel('Word Frequency')
+plt.title('Zipf Law for Herman Melville')
+plt.legend()
+plt.show()
+
+with open('vocabulary_george1_filtered.txt', 'r') as f:
+    vocab1 = [line.split(': ') for line in f.read().splitlines()]
+    vocab1 = [(w, int(f)) for w, f in vocab1]
+
+with open('vocabulary_george2_filtered.txt', 'r') as f:
+    vocab2 = [line.split(': ') for line in f.read().splitlines()]
+    vocab2 = [(w, int(f)) for w, f in vocab2]
+
+with open('vocabulary_george3_filtered.txt', 'r') as f:
+    vocab3 = [line.split(': ') for line in f.read().splitlines()]
+    vocab3 = [(w, int(f)) for w, f in vocab3]
+
+freq1 = [f for w, f in vocab1]
+freq2 = [f for w, f in vocab2]
+freq3 = [f for w, f in vocab3]
+
+rank1 = range(1, len(freq1)+1)
+rank2 = range(1, len(freq2)+1)
+rank3 = range(1, len(freq3)+1)
+
+plt.loglog(rank1, freq1, label='Book 1')
+plt.loglog(rank2, freq2, label='Book 2')
+plt.loglog(rank3, freq3, label='Book 3')
+
+plt.xlabel('Word Rank')
+plt.ylabel('Word Frequency')
+plt.title('Zipf Law for George Eliot')
+plt.legend()
+plt.show()
+
+with open('vocabulary_dick1_filtered.txt', 'r') as f:
+    vocab1 = [line.split(': ') for line in f.read().splitlines()]
+    vocab1 = [(w, int(f)) for w, f in vocab1]
+
+with open('vocabulary_dick2_filtered.txt', 'r') as f:
+    vocab2 = [line.split(': ') for line in f.read().splitlines()]
+    vocab2 = [(w, int(f)) for w, f in vocab2]
+
+with open('vocabulary_dick3_filtered.txt', 'r') as f:
+    vocab3 = [line.split(': ') for line in f.read().splitlines()]
+    vocab3 = [(w, int(f)) for w, f in vocab3]
+
+freq1 = [f for w, f in vocab1]
+freq2 = [f for w, f in vocab2]
+freq3 = [f for w, f in vocab3]
+
+rank1 = range(1, len(freq1)+1)
+rank2 = range(1, len(freq2)+1)
+rank3 = range(1, len(freq3)+1)
+
+plt.loglog(rank1, freq1, label='Book 1')
+plt.loglog(rank2, freq2, label='Book 2')
+plt.loglog(rank3, freq3, label='Book 3')
+
+plt.xlabel('Word Rank')
+plt.ylabel('Word Frequency')
+plt.title('Zipf\'s Law for Charles Dickens')
+plt.legend()
+plt.show()
+
+# SORU G
+
+# Read in the three books for Melville
+with open('Herman Melville Moby Dick; Or, The Whale.txt', 'r') as file:
+    text1 = file.read()
+
+with open('Herman Melville Pierre; or The Ambiguities.txt', 'r') as file:
+    text2 = file.read()
+
+with open('Herman Melville White Jacket; Or, The World on a Man-of-War.txt', 'r', encoding='latin-1') as file:
+    text3 = file.read()
+    text3 = text3.replace('â', '')
+
+tokenized_text1 = re.sub(r"([^\s\w]|_)+", " ", text1).split()
+tokenized_text2 = re.sub(r"([^\s\w]|_)+", " ", text2).split()
+tokenized_text3 = re.sub(r"([^\s\w]|_)+", " ", text3).split()
+
+combined_tokens = tokenized_text1 + tokenized_text2 + tokenized_text3
+checkpoints = [i for i in range(5000, len(combined_tokens), 5000)]
+
+token_size = 0
+vocabulary_size = 0
+vocabulary_sizes = []
+token_sizes = []
+
+def calculate_vocabulary(tokens):
+    vocabulary = set()
+    for token in tokens:
+        if token not in string.punctuation:
+            vocabulary.add(token)
+    return len(vocabulary)
+
+for checkpoint in checkpoints:
+    token_size += 5000
+    vocabulary_size += calculate_vocabulary(combined_tokens[token_size-5000:token_size])
+    vocabulary_sizes.append(vocabulary_size)
+    token_sizes.append(token_size)
+
+plt.plot(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size')
+plt.ylabel('Vocabulary Size')
+plt.title('Melville Vocabulary Size vs Token Size')
+plt.show()
+
+plt.loglog(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size (log scale)')
+plt.ylabel('Vocabulary Size (log scale)')
+plt.title('Melville Vocabulary Size vs Token Size (log-log)')
+plt.show()
+
+# Read in the three books for George Eliot
+with open('george eliot Daniel Deronda.txt', 'r', encoding='latin-1') as file:
+    text1 = file.read()
+    text1 = text1.replace('â', '')
+
+with open('george eliot Middlemarch.txt', 'r', encoding='latin-1') as file:
+    text2 = file.read()
+    text2 = text2.replace('â', '')
+
+with open('george eliot Romola.txt', 'r', encoding='latin-1') as file:
+    text3 = file.read()
+    text3 = text3.replace('â', '')
+
+tokenized_text1 = re.sub(r"([^\s\w]|_)+", " ", text1).split()
+tokenized_text2 = re.sub(r"([^\s\w]|_)+", " ", text2).split()
+tokenized_text3 = re.sub(r"([^\s\w]|_)+", " ", text3).split()
+
+combined_tokens = tokenized_text1 + tokenized_text2 + tokenized_text3
+checkpoints = [i for i in range(5000, len(combined_tokens), 5000)]
+
+token_size = 0
+vocabulary_size = 0
+vocabulary_sizes = []
+token_sizes = []
+
+def calculate_vocabulary(tokens):
+    vocabulary = set()
+    for token in tokens:
+        if token not in string.punctuation:
+            vocabulary.add(token)
+    return len(vocabulary)
+
+for checkpoint in checkpoints:
+    token_size += 5000
+    vocabulary_size += calculate_vocabulary(combined_tokens[token_size-5000:token_size])
+    vocabulary_sizes.append(vocabulary_size)
+    token_sizes.append(token_size)
+
+plt.plot(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size')
+plt.ylabel('Vocabulary Size')
+plt.title('George Eliot Vocabulary Size vs Token Size')
+plt.show()
+
+plt.loglog(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size (log scale)')
+plt.ylabel('Vocabulary Size (log scale)')
+plt.title('George Eliot Vocabulary Size vs Token Size (log-log)')
+plt.show()
+
+# Read in the three books for Charles Dickens
+with open('Charles Dickens 1.txt', 'r') as file:
+    text1 = file.read()
+
+with open('Charles Dickens 2.txt', 'r', encoding='latin-1') as file:
+    text2 = file.read()
+    text2 = text2.replace('â', '')
+
+with open('Charles Dickens 3.txt', 'r', encoding='latin-1') as file:
+    text3 = file.read()
+    text3 = text3.replace('â', '')
+
+tokenized_text1 = re.sub(r"([^\s\w]|_)+", " ", text1).split()
+tokenized_text2 = re.sub(r"([^\s\w]|_)+", " ", text2).split()
+tokenized_text3 = re.sub(r"([^\s\w]|_)+", " ", text3).split()
+
+combined_tokens = tokenized_text1 + tokenized_text2 + tokenized_text3
+checkpoints = [i for i in range(5000, len(combined_tokens), 5000)]
+
+token_size = 0
+vocabulary_size = 0
+vocabulary_sizes = []
+token_sizes = []
+
+def calculate_vocabulary(tokens):
+    vocabulary = set()
+    for token in tokens:
+        if token not in string.punctuation:
+            vocabulary.add(token)
+    return len(vocabulary)
+
+for checkpoint in checkpoints:
+    token_size += 5000
+    vocabulary_size += calculate_vocabulary(combined_tokens[token_size-5000:token_size])
+    vocabulary_sizes.append(vocabulary_size)
+    token_sizes.append(token_size)
+
+plt.plot(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size')
+plt.ylabel('Vocabulary Size')
+plt.title('Charles Dickens Vocabulary Size vs Token Size')
+plt.show()
+
+plt.loglog(token_sizes, vocabulary_sizes)
+plt.xlabel('Token Size (log scale)')
+plt.ylabel('Vocabulary Size (log scale)')
+plt.title('Charles Dickens Vocabulary Size vs Token Size (log-log)')
+plt.show()
