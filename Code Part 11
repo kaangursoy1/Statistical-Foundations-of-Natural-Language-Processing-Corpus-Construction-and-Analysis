@@ -1,0 +1,93 @@
+import glob
+import numpy as np
+import pandas as pd
+import math
+import seaborn as sns
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+import string
+import re
+
+# Read stop words from file and preprocess them
+with open('stop_words_english.txt', 'r', encoding='latin-1') as file:
+    stopword_list = file.read()
+    stopword_list = stopword_list.translate(str.maketrans('', '', string.punctuation)).lower()
+    stopword_list = re.sub(r"([^\s\w]|_)+", " ", stopword_list).split()
+
+# List of text files to process
+text_files = [
+    'biology_1 On the Origin of Species by Means of Natural Selection by Charles Darwin.txt',
+    'biology_2.txt',
+    'biology_3 Darwin and Modern Science by A. C. Seward.txt'
+]
+
+Kaan Gursoy
+21704120
+EEE 486/586
+Assignment 1
+
+filtered_texts = []
+
+# Preprocess each text file
+for file in text_files:
+    with open(file, 'r', encoding='latin-1') as f:
+        text = f.read()
+        text = text.translate(str.maketrans('', '', string.punctuation)).lower()
+        text = text.replace('â', '')
+        tokenized_text = re.sub(r"([^\s\w]|_)+", " ", text).split()
+        tokenized_text.pop(0)
+        filtered_text = [word for word in tokenized_text if word not in stopword_list]
+        filtered_texts.append(filtered_text)
+
+word_freq_dicts = []
+
+# Calculate word frequencies for each text
+for filtered_text in filtered_texts:
+    word_freq = {}
+    for word in filtered_text:
+        if word not in word_freq:
+            word_freq[word] = 1
+        else:
+            word_freq[word] += 1
+    word_freq_dicts.append(word_freq)
+
+vocab_lists = []
+
+# Create vocabulary list for each text
+for word_freq in word_freq_dicts:
+    sorted_word_freq = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+    vocab_list = []
+    for word, freq in sorted_word_freq:
+        vocab_list.append(word)
+    vocab_lists.append(vocab_list)
+
+token_sizes = range(5000, 25001, 5000)
+colors = ['r', 'g', 'b']
+slopes = []
+
+# Calculate type-token ratio and plot results
+for i, vocab_list in enumerate(vocab_lists):
+    type_token_counts = []
+    for token_size in token_sizes:
+        selected_words = vocab_list[:token_size]
+        num_types = len(selected_words)
+        num_tokens = sum(word_freq_dicts[i][word] for word in selected_words)
+        type_token_ratio = num_types / num_tokens
+        type_token_counts.append(type_token_ratio)
+        
+    # Perform linear regression on log-log scale
+    slope, intercept, r_value, p_value, std_err = stats.linregress(
+        np.log(token_sizes), np.log(type_token_counts)
+    )
+    slopes.append(slope)
+
+    plt.loglog(token_sizes, type_token_counts, colors[i], label=f'Book {i+1}')
+    plt.loglog(token_sizes, np.exp(intercept) * np.power(token_sizes, slope), colors[i] + '--')
+
+plt.legend()
+plt.xlabel('Token Size')
+plt.ylabel('Type-Token Ratio')
+plt.show()
+
+print("Slopes of best-fitting lines:", slopes)
